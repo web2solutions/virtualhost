@@ -24,9 +24,13 @@ fi
 
 while [ "$domain" == "" ]
 do
-	echo -e $"Please provide domain. e.g.dev,staging"
+	echo -e $"Please provide domain."
 	read domain
 done
+
+if [ "$rootDir" == "" ]; then
+	rootDir=${domain}
+fi
 
 ### if root dir starts with '/', don't use /var/www as default starting point
 if [[ "$rootDir" =~ ^/ ]]; then
@@ -53,19 +57,19 @@ if [ "$action" == 'create' ]
 
 		### create virtual host rules file
 		if ! echo "server {
-			listen   80;
+            listen   80;
 
-			root $rootDir;
-			index index.php;
+            root $rootDir;
+            index index.php;
 
-			server_name $domain;
+            server_name $domain;
 
-			# serve static files directly
-			location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
-				expires max;
-			}
+            # serve static files directly
+            location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
+                expires max;
+            }
 
-			location / {
+            location / {
                 try_files $uri $uri/ =404;
             }
 
@@ -76,10 +80,9 @@ if [ "$action" == 'create' ]
                 include fastcgi_params;
             }
 
-			location ~ /\.ht {
-				deny all;
-			}
-
+            location ~ /\.ht {
+                deny all;
+            }
 		}" > $sitesAvailable$domain
 		then
 			echo -e $"There is an ERROR create $domain file"
