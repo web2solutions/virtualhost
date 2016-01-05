@@ -53,14 +53,6 @@ if [ "$action" == 'create' ]
 			mkdir $userDir$rootDir
 			### give permission to root dir
 			chmod 755 $userDir$rootDir
-			### write test file in the new domain dir
-			if ! echo "<?php echo phpinfo(); ?>" > $userDir$rootDir/phpinfo.php
-				then
-					echo $"ERROR: Not able to write in file $userDir/$rootDir/phpinfo.php. Please check permissions."
-					exit;
-			else
-					echo $"Added content to $userDir$rootDir/phpinfo.php."
-			fi
 		fi
 
 		### create virtual host rules file
