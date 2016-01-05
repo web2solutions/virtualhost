@@ -28,10 +28,6 @@ do
 	read domain
 done
 
-if [ "$rootDir" == "" ]; then
-	rootDir=${domain//./}
-fi
-
 ### if root dir starts with '/', don't use /var/www as default starting point
 if [[ "$rootDir" =~ ^/ ]]; then
 	userDir=''
