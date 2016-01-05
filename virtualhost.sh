@@ -57,7 +57,7 @@ if [ "$action" == 'create' ]
 
 		### create virtual host rules file
 		if ! echo "server {
-            listen   80;
+            listen 80;
 
             root $rootDir;
             index index.php;
@@ -70,7 +70,7 @@ if [ "$action" == 'create' ]
             }
 
             location / {
-                try_files $uri $uri/ =404;
+                try_files \$uri \$uri/ =404;
             }
 
             location ~ \.php$ {
@@ -83,7 +83,7 @@ if [ "$action" == 'create' ]
             location ~ /\.ht {
                 deny all;
             }
-		}" > $sitesAvailable$domain
+}" > $sitesAvailable$domain
 		then
 			echo -e $"There is an ERROR create $domain file"
 			exit;
