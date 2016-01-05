@@ -21,6 +21,10 @@ if you copy it without the .sh extension:
         $ wget -O virtualhost https://raw.githubusercontent.com/sitilge/virtualhost/master/virtualhost.sh
         $ chmod +x virtualhost
 
+Or a simple one-liner
+
+        cd /usr/local/bin && wget -O virtualhost https://raw.githubusercontent.com/sitilge/virtualhost/master/virtualhost.sh && chmod +x virtualhost
+
 ## Usage ##
 
 Basic command line syntax:
