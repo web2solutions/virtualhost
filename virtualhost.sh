@@ -64,6 +64,9 @@ if [ "$action" == 'create' ]
 
             server_name $domain;
 
+            error_log /var/log/nginx/$domain.error.log;
+            access_log /var/log/nginx/$domain.access.log;
+
             # serve static files directly
             location ~* \.(jpg|jpeg|gif|css|png|js|ico|html)$ {
                 expires max;
@@ -76,7 +79,7 @@ if [ "$action" == 'create' ]
             location ~ \.php$ {
                 fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
                 fastcgi_index index.php;
-                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
                 include fastcgi_params;
             }
 
